@@ -1,0 +1,91 @@
+<!-- Transcribe Web App: index.html -->
+<!-- Copyright (C) 2022 Ethan Uppal. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"></link>
+        <title>Transcribe Web App</title>
+        <script src="https://kit.fontawesome.com/556eaabc59.js" crossorigin="anonymous"></script>
+        <script src="lib/jquery-3.6.0.min.js"></script>
+        <script src="lib/jquery-ui.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body class="darkable">
+        <div id="container" class="container darkable">
+            <div class="header">
+                <h1>Transcribe v0.0.0</h1>
+                <div style="float: right;" hidden>
+                    <label for="dark-mode">Dark Mode:</label>
+                    <input type="checkbox" id="dark-mode-check" name="dark-mode" oninput="toggleDarkMode();">
+                    <script>document.getElementById("dark-mode-check").checked = false;</script>
+                </div>
+                <a
+                    style="float: right; font-size: 16px;"
+                    href="help.html"
+                    target="_blank"
+                    style="target-new: tab;">How to use (Open in new tab)</a>
+                <p>A simple web application to aid in transcription.</p>
+            </div>
+            <hr />
+
+            <div>
+                <noscript>This page requires javascript to work.</noscript>
+                <p>Please upload an audio file to begin:</p>
+                <input type="file" accept="audio/*" id="file-uploader">
+            </div>
+
+            <div id="workspace" style="display: none;">
+                <div id="player" class="row">
+                    <audio id="audio" style="display: none;">
+                        <source src="" id="audio-src" />
+                    </audio>
+                    <button id="backward-skip-button" class="icon-button" onclick="backwardSkip();">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+                    <button id="play-button" class="icon-button">
+                        <i id="play-button-i" class="fa-solid fa-play"></i>
+                    </button>
+                    <button id="forward-skip-button" class="icon-button" onclick="forwardSkip();">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+                    <p id="current-timestamp" class="timestamp"></p>
+                    <input
+                        type="range"
+                        min="0"
+                        max="0"
+                        value="0"
+                        id="audio-slider"
+                        class="slider">
+                    <p id="audio-length" class="timestamp"></p>
+                </div>
+                <div id="section-list">
+                </div>
+                <div id="section-lists-editor" class="align-vertically">
+                    <div><button id="add-button" class="icon-button" onclick="addSongSection();">
+                        <i class="fa-solid fa-plus"></i>
+                        Add a section
+                    </button></div>
+                    <div><button id="copy-button" class="icon-button" onclick="copySections();">
+                        <i class="fa-solid fa-copy"></i>
+                        Save section code to clipboard
+                    </button></div>
+                    <div class="row">
+                        <label for="paste-sections" class="icon-button" style="cursor: default;">
+                            <i class="fa-solid fa-paste"></i>
+                            Paste section code here:
+                        </label>
+                        <input type="text" id="input-sections" name="paste-sections">
+                        <button id="load-pasted-sections-button" onclick="pasteSections();">Load</button>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="footer">
+                <p>Copyright (C) 2022 Ethan Uppal. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+</html>

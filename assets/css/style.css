@@ -1,0 +1,114 @@
+/* Copyright (C) 2022 Ethan Uppal. All rights reserved. */
+
+/* Other CSS files */
+@import "slider.css";
+@import "icon-button.css";
+
+/* Colors */
+:root {
+    /* Palate Colors */
+    /* https://www.canva.com/colors/color-palettes/calm-perspective/ */
+  --ivory: #fcf8f6;
+  --teal-green: #00bbd1;
+  --turquoise: #00e0ea;
+  --pewter: #96a1a8;
+
+  /* Palate Colors */
+  /* https://www.canva.com/colors/color-palettes/the-deep-blue/ */
+  --dark-blue: #050a30;
+  --navy-blue: #000c66;
+  --blue: #0000ff;
+  --baby-blue: #7ec8e3;
+
+  --ivory-inverted: #030709;
+  --pewter-inverted: #695e57;
+
+  /* Semantic Colors */
+  --background-color: var(--pewter);
+  --container-color: var(--ivory);
+  --border-color: black;
+  --control-color: var(--turquoise);
+
+  --dark-text-color: white;
+  --dark-background-color: #555555;
+  --dark-container-color: var(--ivory-inverted);
+  --dark-border-color: white;
+  --dark-control-color: var(--baby-blue);
+}
+
+/* Background */
+body {
+    /* Color */
+    background-color: var(--background-color);
+}
+
+/* Background: Dark */
+body.dark-theme {
+    /* Color */
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+/* Main Content */
+.container {
+    /* Center */
+    margin: auto;
+    max-width: 1000px;
+
+    /* Border and Padding */
+    border-radius: 15px;
+    padding: 15px 20px;
+
+    /* Fonts */
+    font-family: sans-serif;
+    font-size: 20px;
+
+    /* Color */
+    background-color: var(--container-color);
+}
+
+.container h1 {
+    font-size: 24px;
+}
+
+/* Main Content: Dark */
+.container.dark-theme {
+    /* Color */
+    background-color: var(--dark-container-color);
+}
+
+.header p, .header label, .header a {
+    font-size: 16px;
+}
+
+.footer {
+    font-size: 10px;
+}
+
+/* https://stackoverflow.com/questions/11063325/align-html-elements-horizontally-in-a-div */
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.section {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.section label {
+    font-size: 16px;
+}
+
+.section h1 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.timestamp {
+    font-family: monospace;
+}
