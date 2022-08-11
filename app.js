@@ -342,7 +342,7 @@ function addSongSection() {
     model.lastID++;
     createSectionDiv(model.lastID);
     model.sections.push({ id: model.lastID });
-    model.saved = false;
+    internal.saved = false;
     restoreHTMLFromSections();
 }
 
