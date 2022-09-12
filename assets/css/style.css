@@ -54,6 +54,7 @@ body.dark-theme {
     /* Center */
     margin: auto;
     max-width: 1000px;
+    overflow-x: hidden;
 
     /* Border and Padding */
     border-radius: 15px;

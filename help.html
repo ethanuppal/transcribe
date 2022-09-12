@@ -14,9 +14,42 @@
         <div id="container" class="container darkable">
             <div class="header">
                 <h1>Transcribe v0.0.0</h1>
-                <a style="float: right; font-size: 16px;" href="index.html">Back to app</a>
+                <noscript>
+                    <a style="float: right; font-size: 16px;" href="index.html">Go to app</a>
+                </noscript>
+                <a id="app-link" style="float: right; font-size: 16px; display: none;" href="/" onclick="backToApp();"></a>
                 <p>A simple web application to aid in transcription.</p>
             </div>
+            <script>
+                // https://stackoverflow.com/questions/19491336/how-to-get-url-parameter-using-jquery-or-plain-javascript
+                var getUrlParameter = function getUrlParameter(sParam) {
+                    var sPageURL = window.location.search.substring(1),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
+
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=');
+
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                        }
+                    }
+                    return false;
+                };
+                // If referred to from other window, close this tab. Otherwise,
+                // launch a new tab.
+                var appLink = document.getElementById('app-link');
+                appLink.style.display = 'block';
+                var backToApp = function() {}
+                if (getUrlParameter('app_exists') == 'yep') {
+                    backToApp = function() { window.top.close(); }
+                    appLink.innerText = 'Back to app';
+                } else {
+                    appLink.href = "index.html"
+                    appLink.innerText = 'Go to app';
+                }
+            </script>
             <hr />
             <p>This page is a WIP</p>
             <noscript>This page does not need javascript to work, but the app does.</noscript>
@@ -84,6 +117,7 @@
             <p>It is possible to read this page without JavaScript, but the main page requires JavaScript to function. You can read the only JavaScript code that will be run by adding <a href="app.js">/app.js</a> to the URL.</p>
             <hr />
             <div class="footer">
+                <p style="font-size: 14px;">Please report any bugs <a href="https://github.com/deltaII/transcribe/issues">here</a>.</p>
                 <p>Copyright (C) 2022 Ethan Uppal. All rights reserved.</p>
             </div>
         </div>
