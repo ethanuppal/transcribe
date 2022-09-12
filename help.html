@@ -6,6 +6,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css"></link>
+        <link rel="stylesheet" type="text/css" href="assets/css/img-fix.css"></link>
         <title>Transcribe Web App</title>
     </head>
     <body class="darkable">
@@ -18,14 +19,68 @@
             <hr />
             <p>This page is a WIP</p>
             <noscript>This page does not need javascript to work, but the app does.</noscript>
-            <h2>Overview</h2>
-            <p>Transcribe allows you to slow down and loop sections of an audio file to make transcription easier. You can save and restore your progress to work later on.</p>
-            <h2>Uploading Files</h2>
+            <h2 id="overview">Overview</h2>
+            <p>Transcribe is a cross-platform web app that allows you to slow down and loop sections of an audio file to make transcription easier. You can <a href="#saving-progress">save and restore your progress</a> to work later on.</p>
+            <h2 id="uploading-files">Uploading Files</h2>
             <p>To upload a file, simply click the button indicated at the top of the screen. When you upload a file, even if it is the same file as before, all your progress will be cleared, so make sure to save.</p>
-            <h2>Using the Player</h2>
-            <h2>Adding the Sections</h2>
+            <img src="/assets/img/after-upload.png" alt="The workspace after a file has been uploaded.">
+            <p>Uploading a file will, as said above, generate a fresh workspace. The workspace includes the <a href="#using-the-player">player</a> and <a href="#adding-the-sections">the section editor</a>.</p>
+            <img src="/assets/img/workspace.png" alt="A diagram of the workspace.">
+            <h2 id="using-the-player">Using the Player</h2>
+            <p>There are three buttons in the audio player. The left arrow button goes to the beginning of the audio; the right arrow goes to the end; and the play button starts and stops it.</p>
+            <p>When in a section, the beginning- and end-jumping buttons will only go to the bounds specified.</p>
+            <h2 id="adding-the-sections">Adding the Sections</h2>
+            <p>The following three buttons are the entire interface for the section editor.</p>
+            <img src="/assets/img/section-editor.png" alt="The section editor showing the buttons to add, save, and load sections.">
+            <p>The <strong>add section</strong> button creates a new section at the bottom of the page.</p>
+            <p>The <strong>save section</strong> button will copy some text that represents the sections you have made. More on saving in <a href="#saving-progress">this section</a>.</p>
+            <p>The <strong>load section</strong> text is <strong>NOT</strong> a button, but the small <strong>load</strong> to the right of the text box is. More on loading in <a href="#saving-progress">this section</a>.</p>
             <h2>Modifying the Sections</h2>
-            <h2>Saving your Progress</h2>
+            <img src="/assets/img/example-section.png" alt="A blank section in the section editor.">
+            <p>Here is what all the boxes are for:</p>
+            <ul>
+                <li>Enter the name of the section into the Name box.</li>
+                <li>Enter the start time of the section into the Start box, following a MM:SS (minute:second) timestamp format.</li>
+                <li>Enter the start time of the section into the End box, following a MM:SS timestamp format.</li>
+                <li>Enter the speed of the section into the Speed box.</li>
+                <li>Check or uncheck the Loop box to toggle looping.</li>
+            </ul>
+            <p>Press the trash button at the top-right of a section to <strong>irreversibly</strong> delete a section.</p>
+            <h2 id="saving-progress">Saving your Progress</h2>
+            <p>This website does not store any data—audio files or sections—on servers or locally. Therefore, you must take initiative to save your progress.</p>
+            <img src="/assets/img/section-editor.png" alt="The section editor showing the buttons to add, save, and load sections.">
+            <p>Press the save button to copy the <a href="#advanced">"section code"</a> to your clipboard. This bizarre-looking string of letters is what encodes all the information needed to bring back your progress.</p>
+            <p>This section code does NOT have your audio file, so you must keep that as well. I recommend keeping the audio files in a cloud provider such as Google Drive <em>or (safer) an E2E version</em> and the section codes in any cloud text editor such as Google Docs <em>or (safer) the notes app on your device if it has one</em>.</p>
+            <h2 id="lol">The Website Looks Weird</h2>
+            <p>The color scheme of this website is abysmal, and I apologize in advance for that.</p>
+            <h2 id="advanced">Advanced</h2>
+            <p><strong>This section is only for advanced users.</strong></p>
+            <p>The sections are stored as a JSON object like so:</p>
+            <pre>
+{
+    "filename" : Name of file,
+    "fileModified" : JS timestamp when file was last modified,
+    "lastID" : Number greater than or equal to any other section id,
+    "currentTime" : The position of the player,
+    "sections" : [
+        {
+            "id" : Unique id,
+            "name" : Name of section,
+            "start" : Start time in seconds,
+            "end" : End time in seconds,
+            "speed" : Speed where 1 means original,
+            "loop" : Boolean
+        }
+    ]
+}
+            </pre>
+            <p>You can reorder the way the sections appear in the app by reordering the corresponding JSON objects in the sections array.</p>
+            <hr />
+            <h4 id="privacy-policy">Privacy Policy</h4>
+            <p>This website does not and will never collect any information, personal or otherwise, about its users, nor will it track them.</p>
+            <h4 id='other-notes'>Other Notes</h4>
+            <p>I host this website through <a href="https://pages.github.com">GitHub pages</a> and use <a href="https://fontawesome.com">Font Awesome</a> for icons. Source code <a href="https://github.com/deltaII/transcribe">here</a>.</p>
+            <p>It is possible to read this page without JavaScript, but the main page requires JavaScript to function. You can read the only JavaScript code that will be run by adding <a href="/app.js">/app.js</a> to the URL.</p>
             <hr />
             <div class="footer">
                 <p>Copyright (C) 2022 Ethan Uppal. All rights reserved.</p>

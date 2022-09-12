@@ -1,0 +1,7 @@
+/* Copyright (C) 2022 Ethan Uppal. All rights reserved. */
+/* https://stackoverflow.com/questions/41936804/adapt-image-to-container-size */
+img {
+  max-height: 100%;
+  max-width: 100%;
+  border-style: solid;
+}
