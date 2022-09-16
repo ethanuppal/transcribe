@@ -70,13 +70,13 @@
                     </button></div>
                     <div><button id="copy-button" class="icon-button" onclick="copySections();">
                         <i class="fa-solid fa-copy"></i>
-                        Save section code to clipboard
+                        Copy section code
                     </button></div>
                     <div class="row">
-                        <label for="paste-sections" class="icon-button" style="cursor: default;">
+                        <button for="paste-sections" class="icon-button" style="cursor: default;" onClick="pasteIntoBox();">
                             <i class="fa-solid fa-paste"></i>
-                            Paste section code here:
-                        </label>
+                            Paste section code
+                        </button>
                         <input type="text" id="input-sections" name="paste-sections">
                         <button id="load-pasted-sections-button" onclick="pasteSections();">Load</button>
                     </div>

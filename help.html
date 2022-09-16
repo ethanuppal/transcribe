@@ -12,12 +12,15 @@
     </head>
     <body class="darkable">
         <div id="container" class="container darkable">
-            <div class="header">
+            <div class="header" style="position: relative;">
                 <h1>Transcribe v0.0.0</h1>
-                <noscript>
-                    <a style="float: right; font-size: 16px;" href="index.html">Go to app</a>
-                </noscript>
-                <a id="app-link" style="float: right; font-size: 16px; display: none;" href="/" onclick="backToApp();"></a>
+                <div style="float: right; position: absolute; bottom: 0; right: 0;">
+                    <a style="font-size: 16px; bottom: 0;">deltaii.github.io/help.html</a>
+                    <noscript>
+                        <a style="font-size: 16px;" href="/">Go to app</a>
+                    </noscript>
+                    <a id="app-link" style="font-size: 16px; display: none;" href="/" onclick="backToApp();"></a>
+                </div>
                 <p>A simple web application to aid in transcription.</p>
             </div>
             <script>

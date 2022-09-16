@@ -162,8 +162,8 @@ function updateWorkspaceFromAudio() {
             }
         }
     }
-    model.currentTime = currentTime;
 
+    model.currentTime = currentTime;
     $("#current-timestamp").text(secondsToTimestamp(currentTime));
 
     const slider = $("#audio-slider");
@@ -236,6 +236,28 @@ function deleteSection(id) {
     }
 }
 
+function makeSectionValid(section) {
+    if (section.speed <= 0) {
+        section.speed = 1;
+        restoreHTMLSection(section);
+    }
+    if (section.start < 0) {
+        section.start = 0;
+        restoreHTMLSection(section);
+    }
+    if (section.end < 0) {
+        section.end = 0;
+        restoreHTMLSection(section);
+    }
+    // const duration = $("#audio")[0].duration;
+    // if (section.start > duration) {
+    //     section.start = duration;
+    // }
+    // if (section.start > section.end) {
+    //     section.end = section.start;
+    // }
+}
+
 function saveSectionValues(id) {
     const section = getSection(id);
     if (section) {
@@ -246,31 +268,38 @@ function saveSectionValues(id) {
         section.loop = $(`#loop-${id}`)[0].checked;
         $(`#section-name-${id}`).text(section.name);
         internal.saved = false;
+        makeSectionValid(section);
         if (internal.currentSectionID == id) {
             $("#audio")[0].playbackRate = section.speed;
         }
+        updateWorkspaceFromAudio();
+        console.log(model.sections)
+    }
+}
+
+function restoreHTMLSection(section) {
+    const id = section.id;
+    if (section.name) {
+        $(`#name-${id}`)[0].value = section.name;
+        $(`#section-name-${id}`).text(section.name);
+    }
+    if (section.start != null) {
+        $(`#start-${id}`)[0].value = secondsToTimestamp(section.start);
+    }
+    if (section.end != null) {
+        $(`#end-${id}`)[0].value = secondsToTimestamp(section.end);
+    }
+    if (section.speed) {
+        $(`#speed-${id}`)[0].value = section.speed;
+    }
+    if (section.loop != undefined) {
+        $(`#loop-${id}`)[0].checked = section.loop;
     }
 }
 
 function restoreHTMLFromSections() {
     for (const section of model.sections) {
-        const id = section.id;
-        if (section.name) {
-            $(`#name-${id}`)[0].value = section.name;
-            $(`#section-name-${id}`).text(section.name);
-        }
-        if (section.start) {
-            $(`#start-${id}`)[0].value = secondsToTimestamp(section.start);
-        }
-        if (section.end) {
-            $(`#end-${id}`)[0].value = secondsToTimestamp(section.end);
-        }
-        if (section.speed != undefined) {
-            $(`#speed-${id}`)[0].value = section.speed;
-        }
-        if (section.loop != undefined) {
-            $(`#loop-${id}`)[0].checked = section.loop;
-        }
+        restoreHTMLSection(section);
     }
 }
 
@@ -301,6 +330,7 @@ function forwardSkipSection(id) {
     const section = getSection(id);
     $("#audio-slider")[0].value = section.end;
     updateWorkspaceFromSlider();
+    console.log(model.sections)
 }
 
 function createSectionDiv(id) {
@@ -314,7 +344,7 @@ function createSectionDiv(id) {
     <label for="end-${id}">End (in <em>minute:second</em> format):</label>
     <input type="text" id="end-${id}" name="end-${id}" placeholder="00:00" oninput="saveSectionValues(${id});"><br/>
 
-    <label for="speed-${id}">Speed (default = 1, slowest = 0.01):</label>
+    <label for="speed-${id}">Speed (normal = 1, 50% = 0.5):</label>
     <input type="number" id="speed-${id}" name="speed-${id}" placeholder="Enter a playback speed" value="1" min="0.01" step="0.01" onchange="saveSectionValues(${id});"><br/>
 
     <label for="loop-${id}">Loop:</label>
@@ -341,7 +371,14 @@ function createSectionDiv(id) {
 function addSongSection() {
     model.lastID++;
     createSectionDiv(model.lastID);
-    model.sections.push({ id: model.lastID });
+    const currentTime = Math.floor($("#audio-slider")[0].value);
+    model.sections.push({
+        id: model.lastID,
+        start: currentTime,
+        end: currentTime,
+        speed: 1,
+        loop: false
+    });
     internal.saved = false;
     restoreHTMLFromSections();
 }
@@ -395,6 +432,13 @@ function copySections() {
     });
 }
 
+function pasteIntoBox() {
+    (async () => {
+        const text = await navigator.clipboard.readText();
+        $('#input-sections')[0].value = text;
+    })()
+}
+
 function pasteSections() {
     const data = document.getElementById("input-sections").value;
     const object = JSON.parse(data);
@@ -409,7 +453,7 @@ function pasteSections() {
             return;
         }
     }
-    if (object.lastID) {
+    if (object.lastID != null) {
         model.lastID = object.lastID;
     } else {
         alert("The section code is corrupted: missing id generator.");
