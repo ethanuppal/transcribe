@@ -5,5 +5,5 @@ Disallow: /lib
 Disallow: /app.js
 Disallow: /favicon.ico
 Disallow: /Makefile
-Allow: help.html
-Allow: index.html
+Allow: /help.html
+Allow: /index.html
