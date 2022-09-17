@@ -1,0 +1,9 @@
+# I mean, I guess it's fine if they ignore this, but they really don't need to index jquery lol.
+User-agent: *
+Disallow: /assets
+Disallow: /lib
+Disallow: /app.js
+Disallow: /favicon.ico
+Disallow: /Makefile
+Allow: help.html
+Allow: index.html

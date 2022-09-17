@@ -131,14 +131,16 @@ function enableAudio(audio) {
 
 function enableSlider(slider) {
     slider.on("mousedown", pauseAudio);
-    slider.on("input", updateWorkspaceFromSlider);
+    slider.on("input", function() { updateWorkspaceFromSlider(false); });
 }
 
-function updateWorkspaceFromSlider() {
+function updateWorkspaceFromSlider(keepSect) {
     const currentTime = $("#audio-slider")[0].value;
     $("#current-timestamp").text(secondsToTimestamp(currentTime));
 
-    internal.currentSectionID = null;
+    if (!keepSect) {
+        internal.currentSectionID = null;
+    }
     const audio = $("#audio");
     disableAudio(audio);
     audio[0].currentTime = currentTime;
@@ -202,14 +204,14 @@ function pauseAudio() {
 
 function backwardSkip() {
     $("#audio-slider")[0].value = 0;
-    updateWorkspaceFromSlider();
+    updateWorkspaceFromSlider(false);
     pauseAudio();
 }
 
 function forwardSkip() {
     const slider = $("#audio-slider");
     slider[0].value = slider[0].max;
-    updateWorkspaceFromSlider();
+    updateWorkspaceFromSlider(false);
     pauseAudio();
 }
 
@@ -273,7 +275,6 @@ function saveSectionValues(id) {
             $("#audio")[0].playbackRate = section.speed;
         }
         updateWorkspaceFromAudio();
-        console.log(model.sections)
     }
 }
 
@@ -307,7 +308,7 @@ function backwardSkipSection(id) {
     internal.currentSectionID = id;
     const section = getSection(id);
     $("#audio-slider")[0].value = section.start;
-    updateWorkspaceFromSlider();
+    updateWorkspaceFromSlider(true);
 }
 
 function playAudioSection(id) {
@@ -315,9 +316,9 @@ function playAudioSection(id) {
 
     const section = getSection(id);
     const slider = $("#audio-slider")[0];
-    if (slider.value < section.start || slider.value > section.end) {
+    if (slider.value < section.start || slider.value >= section.end) {
         slider.value = section.start;
-        updateWorkspaceFromSlider();
+        updateWorkspaceFromSlider(true);
     }
 
     playAudio(section.speed);
@@ -329,8 +330,7 @@ function forwardSkipSection(id) {
     internal.currentSectionID = id;
     const section = getSection(id);
     $("#audio-slider")[0].value = section.end;
-    updateWorkspaceFromSlider();
-    console.log(model.sections)
+    updateWorkspaceFromSlider(true);
 }
 
 function createSectionDiv(id) {
@@ -400,7 +400,6 @@ function fallbackCopyTextToClipboard(text, onSuccess) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Fallback: Copying text command was ' + msg);
     alert("Successfully copied data to clipboard (on fallback mechanism).");
     onSuccess();
   } catch (err) {
@@ -415,12 +414,10 @@ function copyTextToClipboard(text, onSuccess) {
     fallbackCopyTextToClipboard(text, onSuccess);
 }
   navigator.clipboard.writeText(text).then(function() {
-    console.log('Async: Copying to clipboard was successful!');
     alert("Successfully copied data to clipboard.");
     onSuccess();
   }, function(err) {
       alert(`Failed to copy data to clipboard: ${err}`);
-    console.error('Async: Could not copy text: ', err);
   });
 }
 
