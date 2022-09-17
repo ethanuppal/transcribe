@@ -6,6 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A simple web application to aid in transcribing music.">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css"></link>
         <title>Transcribe Web App</title>
         <script src="https://kit.fontawesome.com/556eaabc59.js" crossorigin="anonymous"></script>
@@ -33,12 +34,12 @@
 
             <div>
                 <noscript>
-                    <p>Oops! This page requires JavaScript to work. The <a href="help.html?app_exists=yep" rel="nofollow">help page</a> does <em>not</em> need JavaScript to work.</p>
-                    <p style="font-weight: bold;">What is JavaScript?</p>
+                    <p>Oops! This page requires JavaScript to work. The <a href="help.html?app_exists=yep">help page</a> does <em>not</em> need JavaScript to work.</p>
+                    <p style="font-weight: bold;">What? Why? :(</p>
                     <p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics">JavaScript</a> is a coding language for browsers that allows websites to be interactive, but sometimes is used against users to <a href="https://www.wikipedia.org/wiki/Web_tracking">track and profile</a> them. This website does none of those things: the code is <a href="/app.js" rel="nofollow">publicly avaliable</a> and no tracking is done.</p>
                 </noscript>
                 <div id="upload-div" style="display: none;">
-                    <p>Please upload an audio file to begin:</p>
+                    <p id="upload-div-msg">Please upload an audio file to begin:</p>
                     <input type="file" accept="audio/*,.mp4" id="file-uploader">
                 </div>
                 <script>
@@ -89,6 +90,10 @@
                         <input type="text" id="input-sections" name="paste-sections">
                         <button id="load-pasted-sections-button" onclick="pasteSections();">Load</button>
                     </div>
+                    <div><button id="link-button" class="icon-button" onclick="copyPermaLink();">
+                        <i class="fa-solid fa-copy"></i>
+                        Copy permanent link
+                    </button></div>
                 </div>
             </div>
 

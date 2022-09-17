@@ -1,15 +1,32 @@
 // Copyright (C) 2022 Ethan Uppal All rights reserved.
 
 // THe model for the app.
-let model = {
+var model = {
     filename: null,
     fileModified: null,
     sections: [],
     lastID: 0
 };
-let internal = {
+var internal = {
     currentSectionID: null,
     saved: true
+};
+
+// https://stackoverflow.com/questions/19491336/how-to-get-url-parameter-using-jquery-or-plain-javascript
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
 };
 
 $(document).ready(function() {
@@ -27,7 +44,6 @@ $(document).ready(function() {
             alert("Please upload a file!");
             return;
         }
-        $("#workspace").show();
         loadWorkspace(file);
     });
 
@@ -41,6 +57,12 @@ $(document).ready(function() {
         // Make all the section play buttons turn off.
         pauseSectionPlayButtons();
     });
+
+    // See if URL has workspace data
+    internal.urlWorkspace = jsonDecompress(JSON.parse(getUrlParameter('workspace')));
+    if (internal.urlWorkspace) {
+        $('#upload-div-msg').text(`Please upload '${internal.urlWorkspace.filename}' to begin.`)
+    }
 });
 
 function setIconBasedOnAudioPause(icon) {
@@ -89,6 +111,15 @@ function loadWorkspace(file) {
     model.filename = file.name;
     model.fileModified = file.lastModified;
 
+    // Try to load data.
+    if (internal.urlWorkspace) {
+         if (!loadFromJSON(internal.urlWorkspace)) {
+             return;
+         } else {
+             internal.urlWorkspace = null;
+         }
+    }
+
     // Set the file as the audio source.
     const url = URL.createObjectURL(file);
     $("#audio-src").attr("src", url);
@@ -99,6 +130,8 @@ function loadWorkspace(file) {
     audio.on("canplay canplaythrough", () => {
         configureAudioPlayer(audio);
     });
+
+    $("#workspace").show();
 }
 
 function secondsToTimestamp(sec) {
@@ -400,7 +433,6 @@ function fallbackCopyTextToClipboard(text, onSuccess) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-    alert("Successfully copied data to clipboard (on fallback mechanism).");
     onSuccess();
   } catch (err) {
       alert(`Failed to copy data to clipboard: ${err}`);
@@ -414,7 +446,6 @@ function copyTextToClipboard(text, onSuccess) {
     fallbackCopyTextToClipboard(text, onSuccess);
 }
   navigator.clipboard.writeText(text).then(function() {
-    alert("Successfully copied data to clipboard.");
     onSuccess();
   }, function(err) {
       alert(`Failed to copy data to clipboard: ${err}`);
@@ -426,6 +457,7 @@ function copySections() {
     const json = JSON.stringify(model);
     copyTextToClipboard(json, () => {
         internal.saved = true;
+        alert("Section code copied! Paste it into a note or document you can easily access.");
     });
 }
 
@@ -439,22 +471,47 @@ function pasteIntoBox() {
 function pasteSections() {
     const data = document.getElementById("input-sections").value;
     const object = JSON.parse(data);
+    loadFromJSON(object);
+}
+
+function copyPermaLink() {
+    model.currentTime = $("#audio")[0].currentTime;
+    const json = encodeURI(JSON.stringify(jsonCompress(model)));
+    copyTextToClipboard(`https://deltaii.github.io/transcribe/?workspace=${json}`, () => {
+        internal.saved = true;
+        alert("Link copied! Please note that while the link contains your workspace, it does not contain the audio file. However, once you go to the link and upload the right audio file, everything will already be ready.");
+    });
+}
+
+function loadFromJSON(object) {
     if (!object.override) {
         if (object.filename && object.fileModified) {
             if (model.filename != object.filename || model.fileModified != object.fileModified) {
-                alert("The section code was saved for a different audio file or a previous version of the audio file. To circumvent this verification check, paste the following text into the code before the final closing brace '}'\n\n,\"override\":true");
-                return;
+                if (internal.urlWorkspace) {
+                    alert("The link requires a specific audio file to work. To upload a different audio file, remove the extra parts of the URL or go to deltaii.github.io/transcribe.");
+                } else {
+                    alert("The section code was saved for a different audio file or a previous version of the audio file. To circumvent this verification check, paste the following text into the code before the final closing brace '}'\n\n,\"override\":true");
+                }
+                return false;
             }
         } else {
-            alert("The section code is corrupted: missing verification info. To circumvent this verification check, paste the following text into the code before the final closing brace '}'\n\n,\"override\":true");
-            return;
+            if (internal.urlWorkspace) {
+                alert("The link is malformed. Please generate a new one.");
+            } else {
+                alert("The section code is corrupted: missing verification info. To circumvent this verification check, paste the following text into the code before the final closing brace '}'\n\n,\"override\":true");
+            }
+            return false;
         }
     }
     if (object.lastID != null) {
         model.lastID = object.lastID;
     } else {
-        alert("The section code is corrupted: missing id generator.");
-        return;
+        if (internal.urlWorkspace) {
+            alert("The link is malformed. Please generate a new one.");
+        } else {
+            alert("The section code is corrupted: missing id generator.");
+        }
+        return false;
     }
     if (object.sections) {
         clearWorkspace();
@@ -467,8 +524,48 @@ function pasteSections() {
             $("#audio")[0].currentTime = object.currentTime;
         }
         internal.saved = false;
+        return true
     } else {
         alert("The section code is corrupted: missing sections content.");
-        return;
+        return false;
     }
+}
+
+function jsonCompress(object) {
+    return {
+        f: object.filename,
+        m: object.fileModified,
+        i: object.lastID,
+        t: object.currentTime,
+        s: object.sections.map((section) => {
+            return {
+                i: section.id,
+                n: section.name,
+                s: section.start,
+                e: section.end,
+                S: section.speed,
+                l: section.loop
+            };
+        })
+    };
+}
+
+
+function jsonDecompress(object) {
+    return {
+        filename: object.f,
+        fileModified: object.m,
+        lastID: object.i,
+        currentTime: object.t,
+        sections: object.s.map((section) => {
+            return {
+                id: section.i,
+                name: section.n,
+                start: section.s,
+                end: section.e,
+                speed: section.S,
+                loop: section.l
+            };
+        })
+    };
 }
