@@ -135,6 +135,7 @@ function loadWorkspace(file) {
     });
 
     $("#workspace").show();
+    $("#control-jumper").show();
 }
 
 function secondsToTimestamp(sec) {
