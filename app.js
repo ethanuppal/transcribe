@@ -119,7 +119,7 @@ function loadWorkspace(file) {
              internal.urlWorkspace = null;
 
              // https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
-             window.history.pushState({}, document.title, "/index.html");
+             window.history.pushState({}, document.title, "index.html");
          }
     }
 
