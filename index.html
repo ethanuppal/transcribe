@@ -17,7 +17,10 @@
     <body class="darkable">
         <div id="container" class="container darkable">
             <div class="header">
-                <h1>Transcribe v0.0.0</h1>
+                <div class="row">
+                    <i class="fa-solid fa-music" style="margin-right: 10px;"></i>
+                    <h1>Transcribe v0.0.0</h1>
+                </div>
                 <div style="float: right;" hidden>
                     <label for="dark-mode">Dark Mode:</label>
                     <input type="checkbox" id="dark-mode-check" name="dark-mode" oninput="toggleDarkMode();">
@@ -82,14 +85,14 @@
                         <i class="fa-solid fa-copy"></i>
                         Copy section code
                     </button></div>
-                    <div class="row">
+                    <div><div class="row">
                         <button for="paste-sections" class="icon-button" style="cursor: default;" onClick="pasteIntoBox();">
                             <i class="fa-solid fa-paste"></i>
                             Paste section code
                         </button>
                         <input type="text" id="input-sections" name="paste-sections">
                         <button id="load-pasted-sections-button" onclick="pasteSections();">Load</button>
-                    </div>
+                    </div></div>
                     <div><button id="link-button" class="icon-button" onclick="copyPermaLink();">
                         <i class="fa-solid fa-copy"></i>
                         Copy permanent link

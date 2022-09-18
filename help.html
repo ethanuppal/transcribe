@@ -7,6 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A simple web application to aid in transcribing music.">
+        <script src="https://kit.fontawesome.com/556eaabc59.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="assets/css/style.css"></link>
         <link rel="stylesheet" type="text/css" href="assets/css/img-fix.css"></link>
         <title>Transcribe Web App</title>
@@ -14,15 +15,15 @@
     <body class="darkable">
         <div id="container" class="container darkable">
             <div class="header" style="position: relative;">
-                <h1>Transcribe v0.0.0</h1>
-                <div style="float: right; position: absolute; bottom: 0; right: 0;">
-                    <a style="font-size: 16px; bottom: 0;">deltaii.github.io/help.html</a>
-                    <noscript>
-                        <a style="font-size: 16px;" href="/">Go to app</a>
-                    </noscript>
-                    <a id="app-link" style="font-size: 16px; display: none;" href="/" onclick="backToApp();"></a>
+                <div class="row">
+                    <i class="fa-solid fa-music" style="margin-right: 10px;"></i>
+                    <h1>Transcribe v0.0.0</h1>
                 </div>
-                <p>A simple web application to aid in transcription.</p>
+                <noscript>
+                    <a style="float: right; font-size: 16px;" href="index.html">Go to app</a>
+                </noscript>
+                <a id="app-link" style="float: right; font-size: 16px; display: none;" href="/" onclick="backToApp();"></a>
+                <p>A simple web application to aid in transcribing music.</p>
             </div>
             <script>
                 // https://stackoverflow.com/questions/19491336/how-to-get-url-parameter-using-jquery-or-plain-javascript
