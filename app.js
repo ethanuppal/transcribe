@@ -59,7 +59,7 @@ $(document).ready(function() {
     });
 
     // See if URL has workspace data
-    internal.urlWorkspace = jsonDecompress(JSON.parse(getUrlParameter('workspace')));
+    internal.urlWorkspace = jsonDecompress(JSON.parse(atob(getUrlParameter('workspace'))));
     if (internal.urlWorkspace) {
         $('#upload-div-msg').text(`Please upload '${internal.urlWorkspace.filename}' to begin.`)
     }
@@ -119,7 +119,7 @@ function loadWorkspace(file) {
              internal.urlWorkspace = null;
 
              // https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
-             window.history.pushState({}, document.title, "/transcribe/?url_refreshed=yep");
+             // window.history.pushState({}, document.title, "/transcribe/?url_refreshed=yep");
          }
     }
 
@@ -480,7 +480,7 @@ function pasteSections() {
 
 function copyPermaLink() {
     model.currentTime = $("#audio")[0].currentTime;
-    const json = encodeURI(JSON.stringify(jsonCompress(model)));
+    const json = btoa(JSON.stringify(jsonCompress(model)));
     copyTextToClipboard(`https://deltaii.github.io/transcribe/?workspace=${json}`, () => {
         internal.saved = true;
         alert("Link copied! Please note that while the link contains your workspace, it does not contain the audio file. However, once you go to the link and upload the right audio file, everything will already be ready.");
