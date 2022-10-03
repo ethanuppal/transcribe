@@ -481,7 +481,7 @@ function pasteSections() {
 function copyPermaLink() {
     model.currentTime = $("#audio")[0].currentTime;
     const json = btoa(JSON.stringify(jsonCompress(model)));
-    copyTextToClipboard(`https://deltaii.github.io/transcribe/?workspace=${json}`, () => {
+    copyTextToClipboard(`https://ethanuppal.github.io/transcribe/?workspace=${json}`, () => {
         internal.saved = true;
         alert("Link copied! Please note that while the link contains your workspace, it does not contain the audio file. However, once you go to the link and upload the right audio file, everything will already be ready.");
     });
@@ -492,7 +492,7 @@ function loadFromJSON(object) {
         if (object.filename && object.fileModified) {
             if (model.filename != object.filename || model.fileModified != object.fileModified) {
                 if (internal.urlWorkspace) {
-                    alert("The link requires a specific audio file to work. To upload a different audio file, remove the extra parts of the URL or go to deltaii.github.io/transcribe.");
+                    alert("The link requires a specific audio file to work. To upload a different audio file, remove the extra parts of the URL or go to ethanuppal.github.io/transcribe.");
                 } else {
                     alert("The section code was saved for a different audio file or a previous version of the audio file. To circumvent this verification check, paste the following text into the code before the final closing brace '}'\n\n,\"override\":true");
                 }
