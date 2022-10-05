@@ -467,8 +467,12 @@ function copySections() {
 
 function pasteIntoBox() {
     (async () => {
-        const text = await navigator.clipboard.readText();
-        $('#input-sections')[0].value = text;
+        if (!navigator.clipboard.readText) {
+            alert("Your browser does not allow automatic pasting. Please paste the section code manually.");
+        } else {
+            const text = await navigator.clipboard.readText();
+            $('#input-sections')[0].value = text;
+        }
     })()
 }
 
