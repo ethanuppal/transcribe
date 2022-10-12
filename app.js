@@ -137,7 +137,7 @@ function loadWorkspace(file) {
     $("#workspace").show();
     $("#control-jumper").show();
 
-    $('#upload-div-msg').text('Upload succsssful!');
+    $('#upload-div-msg').text('Upload successful!');
 }
 
 function secondsToTimestamp(sec) {
