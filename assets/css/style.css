@@ -51,14 +51,15 @@ body.dark-theme {
 
 /* Main Content */
 .container {
-    /* Center */
-    margin: auto;
-    max-width: 1000px;
-    overflow-x: hidden;
+    position: absolute;
+    max-width: 100%;
+    left: 0;
+    right: 0;
 
     /* Border and Padding */
-    border-radius: 15px;
     padding: 15px 20px;
+    top: 0;
+    overflow-x: hidden;
 
     /* Fonts */
     font-family: sans-serif;
@@ -66,6 +67,14 @@ body.dark-theme {
 
     /* Color */
     background-color: var(--container-color);
+}
+
+@media only screen and (min-width: 1000px) {
+    .container {
+        /* Center */
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 }
 
 .container h1 {
