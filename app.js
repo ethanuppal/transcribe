@@ -36,12 +36,12 @@ $(document).ready(function() {
         }
     }
 
-    document.onvisibilitychange = function() {
-        if (document.visibilityState === 'hidden' && model.filename != null && internal.saved == false) {
+    window.addEventListener('focusout', function() {
+        if (model.filename != null && internal.saved == false) {
             saveProgress();
             internal.saved = true;
         }
-    };
+    });
 
 
     // When audio file is uploaded, load the workspace with that file.
