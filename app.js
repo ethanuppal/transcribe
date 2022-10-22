@@ -101,6 +101,15 @@ function clearWorkspace() {
     $("#section-list").empty();
 }
 
+function updateURLTo(newEnding) {
+    // https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
+    window.history.pushState({}, document.title, `/transcribe${newEnding}`);
+}
+
+function saveProgress() {
+    updateURLTo(`?workspace=${generateJSONPackage()}`);
+}
+
 // https://web.dev/read-files/#select-input
 function loadWorkspace(file) {
     // Overwrite workspace if it exists
@@ -117,9 +126,6 @@ function loadWorkspace(file) {
              return;
          } else {
              internal.urlWorkspace = null;
-
-             // https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
-             // window.history.pushState({}, document.title, "/transcribe/?url_refreshed=yep");
          }
     }
 
@@ -484,10 +490,18 @@ function pasteSections() {
     loadFromJSON(object);
 }
 
-function copyPermaLink() {
+function generateJSONPackage() {
     model.currentTime = $("#audio")[0].currentTime;
-    const json = btoa(JSON.stringify(jsonCompress(model)));
-    copyTextToClipboard(`https://ethanuppal.github.io/transcribe/?workspace=${json}`, () => {
+    return btoa(JSON.stringify(jsonCompress(model)));
+}
+
+function generatePermaLink() {
+    const json = generateJSONPackage();
+    return `https://ethanuppal.github.io/transcribe/?workspace=${json}`;
+}
+
+function copyPermaLink() {
+    copyTextToClipboard(generatePermaLink(), () => {
         internal.saved = true;
         alert("Link copied! Please note that while the link contains your workspace, it does not contain the audio file. However, once you go to the link and upload the right audio file, everything will already be ready.");
     });
