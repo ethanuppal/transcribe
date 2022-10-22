@@ -123,3 +123,19 @@ body.dark-theme {
 .timestamp {
     font-family: monospace;
 }
+
+.link-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.link-button {
+    text-align: center;
+    font-size: 24px;
+    padding: 5px;
+    background-color: #F06060;
+    text-decoration: none;
+    color: black;
+
+}

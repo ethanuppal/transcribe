@@ -14,6 +14,7 @@
 
         <script src="https://kit.fontawesome.com/556eaabc59.js" crossorigin="anonymous"></script>
         <script src="lib/jquery-3.6.0.min.js"></script>
+        <script src="script/utilities.js"></script>
         <script src="script/waybackmachine.js"></script>
     </head>
     <body>
@@ -33,39 +34,30 @@
                 </p>
             </div>
             <script>
-                // https://stackoverflow.com/questions/19491336/how-to-get-url-parameter-using-jquery-or-plain-javascript
-                var getUrlParameter = function getUrlParameter(sParam) {
-                    var sPageURL = window.location.search.substring(1),
-                        sURLVariables = sPageURL.split('&'),
-                        sParameterName,
-                        i;
-
-                    for (i = 0; i < sURLVariables.length; i++) {
-                        sParameterName = sURLVariables[i].split('=');
-
-                        if (sParameterName[0] === sParam) {
-                            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                        }
-                    }
-                    return false;
-                };
-                // If referred to from other window, close this tab. Otherwise,
-                // launch a new tab.
-                var appLink = document.getElementById('app-link');
-                appLink.style.display = 'block';
                 var backToApp = function() {}
-                if (getUrlParameter('app_exists') == 'yep') {
-                    backToApp = function() { window.top.close(); }
-                    appLink.innerText = 'Back to app';
-                } else {
-                    appLink.href = "index.html"
-                    appLink.innerText = 'Go to app';
-                }
+                $(document).ready(function() {
+                    // If referred to from other window, close this tab. Otherwise,
+                    // launch a new tab.
+                    var appLink = document.getElementById('app-link');
+                    var appButton = document.getElementById('app-button');
+                    appLink.style.display = 'block';
+                    if (getUrlParameter('app_exists') == 'yep') {
+                        backToApp = function() { window.top.close(); }
+                        appLink.innerText = 'Back to app';
+                    } else {
+                        appLink.href = "index.html"
+                        appLink.innerText = 'Go to app';
+                        appButton.style.display = 'block';
+                    }
+                });
             </script>
             <hr />
             <noscript>This page does not need JavaScript to work, but the app does. Please enable it if you would like to use the app. The code can be found <a href="app.js" rel="nofollow">here</a>.<hr /></noscript>
             <h2 id="overview">Overview</h2>
             <p>Transcribe is a cross-platform web app free for all to use that allows you to slow down and loop sections of an audio file to make transcription easier. You can <a href="#saving-progress">save and restore your progress</a> to work later on.</p>
+            <div class="link-button-container">
+                <a href="index.html" id="app-button" class="link-button" style="display: none;"><strong>Go to app</strong></a>
+            </div>
             <img src="assets/img/full-app-example-v1.png" alt="The application in use to transcribe a solo.">
             <p>If you have any questions not answered by this help page or want further clarification, <a href="https://github.com/ethanuppal/transcribe/issues/new">feel free to send me a question on the project page</a>.</p>
             <h2 id="uploading-files">Uploading Files</h2>
