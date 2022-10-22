@@ -6,7 +6,7 @@ var waybackMachineNoticeHTML = `
 </div>`;
 
 function detectWaybackMachine() {
-    if ($('wm-ipp-base').length && window.location.href.startsWith('https://web.archive.org')) {
+    if (window.location.href.startsWith('https://web.archive.org')) {
         return true;
     }
     if (getUrlParameter('inside') == 'waybackmachine') {
