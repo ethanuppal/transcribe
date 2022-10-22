@@ -6,7 +6,8 @@ var waybackMachineNoticeHTML = `
 </div>`;
 
 function detectWaybackMachine() {
-    if (window.location.href.startsWith('https://web.archive.org')) {
+    const linkPrefix = 'h' + 't' + 't' + 'p' + 's' + ':' + '/' + '/' + 'w' + 'e' + 'b' + '.' + 'a' + 'r' + 'c' + 'h' + 'i' + 'v' + 'e' + '.' + 'o' + 'r' + 'g';
+    if (window.location.href.startsWith(linkPrefix)) {
         return true;
     }
     if (getUrlParameter('inside') == 'waybackmachine') {
