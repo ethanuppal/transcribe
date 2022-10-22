@@ -50,7 +50,7 @@ body.dark-theme {
 }
 
 /* Main Content */
-.container {
+#container {
     position: absolute;
     max-width: 100%;
     left: 0;
@@ -61,7 +61,7 @@ body.dark-theme {
     top: 0;
     overflow-x: hidden;
     overflow-y: hidden;
-    
+
     /* Fonts */
     font-family: sans-serif;
     font-size: 20px;
@@ -71,28 +71,28 @@ body.dark-theme {
 }
 
 @media only screen and (min-width: 1000px) {
-    .container {
+    #container {
         /* Center */
         max-width: 1000px;
         margin: 0 auto;
     }
 }
 
-.container h1 {
+#container h1 {
     font-size: 24px;
 }
 
 /* Main Content: Dark */
-.container.dark-theme {
+#container.dark-theme {
     /* Color */
     background-color: var(--dark-container-color);
 }
 
-.header p, .header label, .header a {
+#header p, #header label, #header a {
     font-size: 16px;
 }
 
-.footer {
+#footer {
     font-size: 10px;
 }
 

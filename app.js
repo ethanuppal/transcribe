@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Ethan Uppal All rights reserved.
+// Copyright (C) 2022 Ethan Uppal. All rights reserved.
 
 // THe model for the app.
 var model = {
@@ -346,7 +346,7 @@ function restoreHTMLSection(section) {
     if (section.speed) {
         $(`#speed-${id}`)[0].value = section.speed;
     }
-    if (section.loop != undefined) {
+    if (section.loop !== undefined) {
         $(`#loop-${id}`)[0].checked = section.loop;
     }
 }
