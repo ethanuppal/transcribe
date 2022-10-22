@@ -37,8 +37,9 @@ $(document).ready(function() {
     }
 
     document.onvisibilitychange = function() {
-        if (document.visibilityState === 'hidden' && model.filename != null) {
+        if (document.visibilityState === 'hidden' && model.filename != null && internal.saved == false) {
             saveProgress();
+            internal.saved = true;
         }
     };
 
