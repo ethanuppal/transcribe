@@ -36,6 +36,13 @@ $(document).ready(function() {
         }
     }
 
+    document.onvisibilitychange = function() {
+        if (document.visibilityState === 'hidden' && model.filename != null) {
+            saveProgress();
+        }
+    };
+
+
     // When audio file is uploaded, load the workspace with that file.
     $("#file-uploader").on("input", function() {
         const files = $(this).prop("files");
