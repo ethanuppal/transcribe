@@ -3,7 +3,7 @@
     "filename": "miles_davis_freddie_freeloader.mp3",
     "sections": [
         {
-            "id": 3,
+            "id": 0,
             "name": "Kelly 1",
             "start": 44,
             "end": 67,
@@ -11,7 +11,7 @@
             "loop": true
         },
         {
-            "id": 4,
+            "id": 1,
             "name": "Kelly 2",
             "start": 67,
             "end": 89,
@@ -19,7 +19,7 @@
             "loop": false
         },
         {
-            "id": 5,
+            "id": 2,
             "name": "Kelly 3",
             "start": 89,
             "end": 112,
@@ -27,7 +27,7 @@
             "loop": false
         },
         {
-            "id": 6,
+            "id": 3,
             "name": "Kelly 4",
             "start": 112,
             "end": 135,
@@ -35,7 +35,7 @@
             "loop": false
         },
         {
-            "id": 7,
+            "id": 4,
             "name": "Full Kelly",
             "start": 44,
             "end": 135,
@@ -43,6 +43,6 @@
             "loop": true
         }
     ],
-    "lastID": 7,
+    "lastID": 5,
     "currentTime": 46.6279455
 }

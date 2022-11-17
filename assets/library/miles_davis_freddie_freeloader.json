@@ -12,19 +12,19 @@
         },
         {
             "id": 1,
-            "name": "Miles's Solo",
-            "start": 134,
-            "end": 271,
-            "speed": "1",
-            "loop": true
-        },
-        {
-            "id": 2,
             "start": 44,
             "end": 135,
             "speed": "1",
             "loop": true,
             "name": "Wynton Kelly's Solo"
+        },
+        {
+            "id": 2,
+            "name": "Miles's Solo",
+            "start": 134,
+            "end": 271,
+            "speed": "1",
+            "loop": true
         },
         {
             "id": 3,
