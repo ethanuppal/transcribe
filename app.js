@@ -50,10 +50,37 @@ $(document).ready(function() {
     });
 
     // See if URL has workspace data
-    internal.urlWorkspace = jsonDecompress(JSON.parse(atob(getUrlParameter('workspace'))));
-    if (internal.urlWorkspace) {
+    const workspaceParam = getUrlParameter('workspace');
+    if (workspaceParam) {
+        internal.urlWorkspace = jsonDecompress(JSON.parse(atob(workspaceParam)));
         $('#upload-div-msg').text(`Please upload '${internal.urlWorkspace.filename}' to begin.`)
     }
+
+    // See if loading from the library
+    const libraryLoad = getUrlParameter('library');
+    if (libraryLoad) {
+        fetch(`assets/library/${libraryLoad}.json`)
+            .then(response => response.text())
+            .then(data => {
+                var sectionCode = JSON.parse(data);
+                sectionCode.override = true;
+                loadFromJSON(sectionCode);
+                loadWorkspaceURL(`assets/audio/${sectionCode.filename}`, sectionCode.name);
+                model.override = true;
+                internal.permalink = `?library=${libraryLoad}`;
+        });
+    }
+
+    // https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
+    // Cache selectors outside callback for performance.
+    var $window = $(window),
+        $stickyEl = $('#player'),
+        elTop = $stickyEl.offset().top;
+
+    $window.scroll(function() {
+        console.log($window.scrollTop() > elTop);
+         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+     });
 });
 
 function setIconBasedOnAudioPause(icon) {
@@ -89,6 +116,7 @@ function playAudio(speed) {
 
 function clearWorkspace() {
     model.sections = [];
+    internal.permalink = null;
     $("#section-list").empty();
 }
 
@@ -122,6 +150,10 @@ function loadWorkspace(file) {
 
     // Set the file as the audio source.
     const url = URL.createObjectURL(file);
+    loadWorkspaceURL(url);
+}
+
+function loadWorkspaceURL(url, name) {
     $("#audio-src").attr("src", url);
 
     // Load the audio and configure the player.
@@ -134,7 +166,11 @@ function loadWorkspace(file) {
     $("#workspace").show();
     $("#control-jumper").show();
 
-    $('#upload-div-msg').text('Upload successful!');
+    if (name) {
+        $('#upload-div-msg').html(`Viewing "${name}" from the <a href="library.html">song library</a>.`);
+    } else {
+        $('#upload-div-msg').text('Upload successful!');
+    }
 }
 
 function secondsToTimestamp(sec) {
@@ -487,14 +523,21 @@ function generateJSONPackage() {
 }
 
 function generatePermaLink() {
+    if (internal.permalink) {
+        return `https://ethanuppal.github.io/transcribe/index.html${internal.permalink }`;
+    }
     const json = generateJSONPackage();
-    return `https://ethanuppal.github.io/transcribe/?workspace=${json}`;
+    return `https://ethanuppal.github.io/transcribe/index.html?workspace=${json}`;
 }
 
 function copyPermaLink() {
     copyTextToClipboard(generatePermaLink(), () => {
         internal.saved = true;
-        alert("Link copied! Please note that while the link contains your workspace, it does not contain the audio file. However, once you go to the link and upload the right audio file, everything will already be ready.");
+        if (internal.permalink) {
+            alert("Link copied!");
+        } else {
+            alert("Link copied! Please note that while the link contains your workspace, it does not contain the audio file. However, once you go to the link and upload the right audio file, everything will already be ready.");
+        }
     });
 }
 

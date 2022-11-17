@@ -1,0 +1,48 @@
+{
+    "name": "Breakdown of Wynton Kelly's solo on Freddie Freeloader",
+    "filename": "miles_davis_freddie_freeloader.mp3",
+    "sections": [
+        {
+            "id": 3,
+            "name": "Kelly 1",
+            "start": 44,
+            "end": 67,
+            "speed": "1",
+            "loop": true
+        },
+        {
+            "id": 4,
+            "name": "Kelly 2",
+            "start": 67,
+            "end": 89,
+            "speed": "1",
+            "loop": false
+        },
+        {
+            "id": 5,
+            "name": "Kelly 3",
+            "start": 89,
+            "end": 112,
+            "speed": "1",
+            "loop": false
+        },
+        {
+            "id": 6,
+            "name": "Kelly 4",
+            "start": 112,
+            "end": 135,
+            "speed": "1",
+            "loop": false
+        },
+        {
+            "id": 7,
+            "name": "Full Kelly",
+            "start": 44,
+            "end": 135,
+            "speed": "0.75",
+            "loop": true
+        }
+    ],
+    "lastID": 7,
+    "currentTime": 46.6279455
+}

@@ -96,6 +96,10 @@ body.dark-theme {
     font-size: 10px;
 }
 
+#footer .normal {
+    font-size: 16px;
+}
+
 /* https://stackoverflow.com/questions/11063325/align-html-elements-horizontally-in-a-div */
 .row {
     display: flex;
@@ -137,5 +141,10 @@ body.dark-theme {
     background-color: #F06060;
     text-decoration: none;
     color: black;
+}
 
+// https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
+#player.sticky {
+    position: fixed;
+    top: 0;
 }

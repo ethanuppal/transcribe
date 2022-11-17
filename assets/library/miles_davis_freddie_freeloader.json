@@ -1,0 +1,64 @@
+{
+    "name": "Freddie Freeloader",
+    "filename": "miles_davis_freddie_freeloader.mp3",
+    "sections": [
+        {
+            "id": 0,
+            "start": 0,
+            "end": 44,
+            "speed": "1",
+            "loop": false,
+            "name": "Head"
+        },
+        {
+            "id": 1,
+            "name": "Miles's Solo",
+            "start": 134,
+            "end": 271,
+            "speed": "1",
+            "loop": true
+        },
+        {
+            "id": 2,
+            "start": 44,
+            "end": 135,
+            "speed": "1",
+            "loop": true,
+            "name": "Wynton Kelly's Solo"
+        },
+        {
+            "id": 3,
+            "start": 271,
+            "end": 384,
+            "speed": "1",
+            "loop": true,
+            "name": "Coltrane's Solo"
+        },
+        {
+            "id": 4,
+            "start": 384,
+            "end": 495,
+            "speed": "1",
+            "loop": true,
+            "name": "Cannonball's Solo"
+        },
+        {
+            "id": 5,
+            "start": 495,
+            "end": 537,
+            "speed": "1",
+            "loop": true,
+            "name": "PC's Solo"
+        },
+        {
+            "id": 6,
+            "start": 537,
+            "end": 588,
+            "speed": "1",
+            "loop": false,
+            "name": "Head Out"
+        }
+    ],
+    "lastID": 7,
+    "currentTime": 0
+}
