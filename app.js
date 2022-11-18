@@ -68,6 +68,7 @@ $(document).ready(function() {
                 loadWorkspaceURL(`assets/audio/${sectionCode.filename}`, sectionCode.name);
                 model.override = true;
                 internal.permalink = `?library=${libraryLoad}`;
+                internal.saved = true;
         });
     }
 
@@ -342,6 +343,7 @@ function saveSectionValues(id) {
         section.loop = $(`#loop-${id}`)[0].checked;
         $(`#section-name-${id}`).text(section.name);
         internal.saved = false;
+        internal.permalink = null;
         makeSectionValid(section);
         if (internal.currentSectionID == id) {
             $("#audio")[0].playbackRate = section.speed;
