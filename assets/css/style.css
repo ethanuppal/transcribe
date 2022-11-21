@@ -148,3 +148,8 @@ body.dark-theme {
     position: fixed;
     top: 0;
 }
+
+.not-link {
+    color: black;
+    text-decoration: none;
+}
