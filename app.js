@@ -53,7 +53,7 @@ $(document).ready(function() {
     const workspaceParam = getUrlParameter('workspace');
     if (workspaceParam) {
         internal.urlWorkspace = jsonDecompress(JSON.parse(atob(workspaceParam)));
-        $('#upload-div-msg').text(`Please upload '${internal.urlWorkspace.filename}' to begin.`)
+        $('#upload-div-msg').html(`Please upload '${internal.urlWorkspace.filename}' to begin, or load a song from the <a href="library.html">song library</a>.`)
     }
 
     // See if loading from the library
@@ -169,8 +169,10 @@ function loadWorkspaceURL(url, name) {
 
     if (name) {
         $('#upload-div-msg').html(`Viewing "${name}" from the <a href="library.html">song library</a>.`);
+        document.title = `${name} | Transcribe Web App`;
     } else {
         $('#upload-div-msg').html('Upload successful! You can upload a new file or view the <a href="library.html">song library</a>.');
+        document.title = `${model.filename} | Transcribe Web App`;
     }
 }
 
