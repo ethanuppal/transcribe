@@ -1,0 +1,63 @@
+{
+    "name": "Blues on the Corner",
+    "filename": "mccoy_tyner_blues_corner.mp4",
+    "sections": [
+        {
+            "id": 1,
+            "start": 0,
+            "end": 9,
+            "speed": "1",
+            "loop": false,
+            "name": "Bars 1-4"
+        },
+        {
+            "id": 2,
+            "start": 8,
+            "end": 16,
+            "speed": "1",
+            "loop": false,
+            "name": "Bars 5-8"
+        },
+        {
+            "id": 3,
+            "start": 16,
+            "end": 25,
+            "speed": "1",
+            "loop": false,
+            "name": "Bars 9-12"
+        },
+        {
+            "id": 4,
+            "start": 40,
+            "end": 49,
+            "speed": "1",
+            "loop": false,
+            "name": "Bars 9-12 (2nd)"
+        },
+        {
+            "id": 5,
+            "start": 49,
+            "end": 74,
+            "speed": "1",
+            "loop": true,
+            "name": "Tyner 1"
+        },
+        {
+            "id": 6,
+            "start": 49,
+            "end": 197,
+            "speed": "1",
+            "loop": true,
+            "name": "Tyner Solo"
+        },
+        {
+            "id": 7,
+            "start": 197,
+            "end": 294,
+            "speed": "1",
+            "loop": true,
+            "name": "Henderson Solo"
+        }
+    ],
+    "lastID": 7
+}

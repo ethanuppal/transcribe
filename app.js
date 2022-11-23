@@ -170,7 +170,7 @@ function loadWorkspaceURL(url, name) {
     if (name) {
         $('#upload-div-msg').html(`Viewing "${name}" from the <a href="library.html">song library</a>.`);
     } else {
-        $('#upload-div-msg').text('Upload successful!');
+        $('#upload-div-msg').html('Upload successful! You can upload a new file or view the <a href="library.html">song library</a>.');
     }
 }
 
