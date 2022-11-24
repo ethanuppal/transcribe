@@ -79,7 +79,7 @@ $(document).ready(function() {
         elTop = $stickyEl.offset().top;
 
     $window.scroll(function() {
-        console.log($window.scrollTop() > elTop);
+        //console.log($window.scrollTop() > elTop);
          $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
      });
 });

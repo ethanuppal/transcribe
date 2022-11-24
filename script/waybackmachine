@@ -10,6 +10,9 @@ function detectWaybackMachine() {
     if (window.location.href.startsWith(linkPrefix)) {
         return true;
     }
+    if (navigator.userAgent.includes('archive.org_bot')) {
+        return true;
+    }
     if (getUrlParameter('inside') == 'waybackmachine') {
         return true;
     }
