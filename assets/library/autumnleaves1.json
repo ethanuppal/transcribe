@@ -17,8 +17,24 @@
             "speed": "1",
             "loop": true,
             "name": "Hank Jones Solo"
+        },
+        {
+            "id": 3,
+            "start": 260,
+            "end": 327,
+            "speed": "1",
+            "loop": true,
+            "name": "Miles 1"
+        },
+        {
+            "id": 4,
+            "start": 329,
+            "end": 399,
+            "speed": "1",
+            "loop": true,
+            "name": "Miles 2"
         }
     ],
-    "lastID": 2,
+    "lastID": 4,
     "currentTime": 0
 }

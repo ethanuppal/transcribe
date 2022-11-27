@@ -53,7 +53,8 @@ $(document).ready(function() {
     const workspaceParam = getUrlParameter('workspace');
     if (workspaceParam) {
         internal.urlWorkspace = jsonDecompress(JSON.parse(atob(workspaceParam)));
-        $('#upload-div-msg').html(`Please upload '${internal.urlWorkspace.filename}' to begin, or load a song from the <a href="library.html">song library</a>.`)
+        $('#upload-div-msg').html(`Please upload '${internal.urlWorkspace.filename}' to begin, or load a song from the <a href="library.html">song library</a>.`);
+        document.title = `${internal.urlWorkspace.filename} | Transcribe Web App`;
     }
 
     // See if loading from the library
