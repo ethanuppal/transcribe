@@ -1,7 +1,64 @@
 {
     "name": "Autumn Leaves",
     "filename": "cannonball_adderley_autumn_leaves.mp4",
-    "sections": [],
-    "lastID": 0,
+    "sections": [
+        {
+            "id": 1,
+            "start": 0,
+            "end": 52,
+            "speed": "1",
+            "loop": false,
+            "name": "Intro"
+        },
+        {
+            "id": 2,
+            "start": 54,
+            "end": 124,
+            "speed": "1",
+            "loop": false,
+            "name": "Head"
+        },
+        {
+            "id": 3,
+            "start": 124,
+            "end": 260,
+            "speed": "1",
+            "loop": true,
+            "name": "Sax Solo"
+        },
+        {
+            "id": 4,
+            "start": 260,
+            "end": 399,
+            "speed": "1",
+            "loop": true,
+            "name": "Miles Solo"
+        },
+        {
+            "id": 5,
+            "start": 399,
+            "end": 465,
+            "speed": "1",
+            "loop": true,
+            "name": "Hank Jones Solo"
+        },
+        {
+            "id": 6,
+            "start": 465,
+            "end": 517,
+            "speed": "1",
+            "loop": false,
+            "name": "Head Out"
+        },
+        {
+            "id": 7,
+            "start": 517,
+            "end": 660,
+            "speed": "1",
+            "loop": false,
+            "name": "Outro"
+        }
+    ],
+    "lastID": 7,
     "currentTime": 0
 }

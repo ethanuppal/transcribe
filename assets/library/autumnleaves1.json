@@ -1,0 +1,24 @@
+{
+    "name": "Autumn Leaves",
+    "filename": "cannonball_adderley_autumn_leaves.mp4",
+    "sections": [
+        {
+            "id": 1,
+            "start": 260,
+            "end": 399,
+            "speed": "1",
+            "loop": true,
+            "name": "Miles Solo"
+        },
+        {
+            "id": 2,
+            "start": 399,
+            "end": 465,
+            "speed": "1",
+            "loop": true,
+            "name": "Hank Jones Solo"
+        }
+    ],
+    "lastID": 2,
+    "currentTime": 0
+}
