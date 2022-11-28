@@ -75,14 +75,14 @@ $(document).ready(function() {
 
     // https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
     // Cache selectors outside callback for performance.
-    var $window = $(window),
-        $stickyEl = $('#player'),
-        elTop = $stickyEl.offset().top;
-
-    $window.scroll(function() {
-        //console.log($window.scrollTop() > elTop);
-         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
-     });
+    // var $window = $(window),
+    //     $stickyEl = $('#player'),
+    //     elTop = $stickyEl.offset().top;
+    //
+    // $window.scroll(function() {
+    //     //console.log($window.scrollTop() > elTop);
+    //      $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+    //  });
 });
 
 function setIconBasedOnAudioPause(icon) {

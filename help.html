@@ -54,45 +54,51 @@
             <hr />
             <noscript>This page does not need JavaScript to work, but the app does. Please enable it if you would like to use the app. The code can be found <a href="app.js" rel="nofollow">here</a>.<hr /></noscript>
             <h2 id="overview">Overview</h2>
-            <p>Transcribe is a cross-platform web app free for all to use that allows you to slow down and loop sections of an audio file to make transcription easier. You can <a href="#saving-progress">save and restore your progress</a> to work later on.</p>
+            <p>Transcribe is a free cross-platform web app for slowing down and looping sections of an audio file. You can upload your own audio files or choose from many existing ones in the <a href="library.html">song library</a>.</p>
             <div class="link-button-container">
                 <a href="index.html" id="app-button" class="link-button" style="display: none;"><strong>Go to app</strong></a>
             </div>
             <img src="assets/img/full-app-example-v1.png" alt="The application in use to transcribe a solo.">
-            <p>If you have any questions not answered by this help page or want further clarification, <a href="https://github.com/ethanuppal/transcribe/issues/new">feel free to send me a question on the project page</a>.</p>
-            <p>If you're wondering how to transcribe, JazzAdvice.com is an excellent resource. <a href="https://www.jazzadvice.com/lessons/getting-started-with-transcription/">This post</a>, for example, has a wealth of information and links to many others.</p>
+            <p>Here are a couple notes:</p>
+            <ul>
+                <li><p>If you have any questions not answered by this help page or want further clarification, <a href="https://github.com/ethanuppal/transcribe/issues/new">feel free to send me a question on the project page</a>.</p></li>
+                <li><p>If you're wondering how to transcribe, JazzAdvice.com is an excellent resource. <a href="https://www.jazzadvice.com/lessons/getting-started-with-transcription/">This post</a>, for example, has a wealth of information and links to many others.</p></li>
+            </ul>
             <h2 id="uploading-files">Uploading Files</h2>
-            <p>To upload a file, simply click the button indicated at the top of the screen. When you upload a file, even if it is the same file as before, all your progress will be cleared, so make sure to save.</p>
+            <p>To upload a file, simply click the button indicated at the top of the screen. When you upload a file, the app will generate a fresh workspace, so make sure to save your previous work or open the app in a new tab.</p>
             <img src="assets/img/after-upload.png" alt="The workspace after a file has been uploaded.">
-            <p>Uploading a file will, as said above, generate a fresh workspace. The workspace includes the <a href="#using-the-player">player</a> and <a href="#adding-the-sections">the section editor</a>.</p>
+            <p>The workspace includes the <a href="#using-the-player">player</a> and <a href="#adding-the-sections">the section editor</a>. This is a fancy colorful diagram I spent too long making:</p>
             <img src="assets/img/workspace.png" alt="A diagram of the workspace.">
             <h2 id="using-the-player">Using the Player</h2>
             <p>There are three buttons in the audio player. The left arrow button goes to the beginning of the audio; the right arrow goes to the end; and the play button starts and stops it.</p>
-            <p>When in a section, the beginning- and end-jumping buttons will only go to the bounds specified.</p>
+            <p>When in a section, the start- and end-jumping buttons will only go to the bounds specified. For example, if the starting location is at 1 minute and 30 seconds, pressing the start-jumping button will move the playhead to the 1 minute and 30 second mark.</p>
             <h2 id="adding-the-sections">Adding the Sections</h2>
-            <p>The following three buttons are the entire interface for the section editor.</p>
-            <img src="assets/img/section-editor.png" alt="The section editor showing the buttons to add, save, and load sections.">
-            <p>The <strong>add section</strong> button creates a new section at the bottom of the page.</p>
-            <p>The <strong>save section</strong> button will copy some text that represents the sections you have made. More on saving in <a href="#saving-progress">this section</a>.</p>
-            <p>The <strong>paste section</strong> button will paste into the text box. The small <strong>load</strong> to the right will restore your progress based on what you pasted in. More on loading in <a href="#saving-progress">this section</a>.</p>
-            <p>There is a <strong>copy link</strong> button which will copy a link to your progress, which may be a more convenient way to save your progress. Note: the links may become very long for complex workspaces.</p>
-            <h2>Modifying the Sections</h2>
-            <img src="assets/img/example-section.png" alt="A blank section in the section editor.">
-            <p>Here is what all the boxes are for:</p>
+            <p>The section editor menu has three buttons:</p>
+            <img src="assets/img/section-editor.png" alt="The section editor with the buttons to add, save, and load sections.">
             <ul>
-                <li>Enter the name of the section into the Name box.</li>
-                <li>Enter the start time of the section into the Start box, following a MM:SS (minute:second) timestamp format.</li>
-                <li>Enter the start time of the section into the End box, following a MM:SS timestamp format.</li>
-                <li>Enter the speed of the section into the Speed box.</li>
-                <li>Check or uncheck the Loop box to toggle looping.</li>
+                <li><p>The <strong>add a section</strong> button creates a new section at the bottom of the page.</p></li>
+                <li><p>The <strong>copy section code</strong> button copies a code that represents the sections you have made.</p></li>
+                <li>
+                <p>The <strong>paste section code</strong> button paste into the text box. The small <strong>load</strong> to the right will restore your progress based on what you pasted in.</p></li>
+                <li><p>The <strong>copy permanent link</strong> button copies a link you can use to access your progress later. This may be more convienient than copying the section code and pasting it later. <em>Note: the links may become very long for complex workspaces.</em></p></li>
             </ul>
-            <p>Press the trash button at the top-right of a section to <strong>irreversibly</strong> delete a section.</p>
+            <h2>Modifying the Sections</h2>
+            <p>Using the section editor menu, you can create new sections. Once you have created a section, you can customize it.</p>
+            <img src="assets/img/example-section.png" alt="A blank section in the section editor.">
+            <ul>
+                <li>Enter the name of the section into the <strong>Section Name</strong> box.</li>
+                <li>Enter the start time of the section into the <strong>Start</strong> box, following a MM:SS (minute:second) timestamp format.</li>
+                <li>Enter the start time of the section into the <strong>End</strong> box, following a MM:SS timestamp format.</li>
+                <li>Enter the speed of the section into the <strong>Speed</strong> box. A speed of 1 indicates 100% and a speed of 0.5 indicates 50%.</li>
+                <li>Check or uncheck the <strong>Loop</strong> box to toggle whether the section will repeat from its start once it has finished playing.</li>
+            </ul>
+            <p>Press the trash button at the top-right of a section to <u>irreversibly</u> delete a section.</p>
             <h2 id="saving-progress">Saving your Progress</h2>
-            <p>This website does not store any data—audio files or sections—on servers or locally. Therefore, you must take initiative to save your progress.</p>
+            <p>As long as you keep the tab open, the app will automatically save your progress. If you accidently close the tab, look in your browser history and click on the most recent link to the website. You can alo manually save your progress by copying the section code or a special link.</p>
             <img src="assets/img/section-editor.png" alt="The section editor showing the buttons to add, save, and load sections.">
-            <p>Press the save button to copy the <a href="#advanced">"section code"</a> to your clipboard. This bizarre-looking string of letters is what encodes all the information needed to bring back your progress.</p>
-            <p>This section code does NOT have your audio file, so you must keep that as well. I recommend keeping the audio files in a cloud provider such as Google Drive <em>or (safer) an E2E version</em> and the section codes in any cloud text editor such as Google Docs <em>or (safer) the notes app on your device if it has one</em>.</p>
-            <h2 id="lol">The Website Looks Weird</h2>
+            <p>Clicking the <strong>copy section code</strong> button copies a <a href="#advanced">"section code"</a> to your clipboard. This bizarre-looking string of letters is what encodes your progress.</p>
+            <p>This section code does NOT have your audio file, so you must keep that as well. I keep my audio files in a cloud provider like Google Drive.</p>
+            <h2 id="lol">The Website Looks Weird :(</h2>
             <p>The color scheme of this website is abysmal, and I apologize in advance for that.</p>
             <h2 id="advanced">Advanced</h2>
             <p><strong>This section is only for advanced users.</strong></p>
@@ -115,11 +121,11 @@
     ]
 }
             </pre>
-            <p>You can reorder the way the sections appear in the app by reordering the corresponding JSON objects in the sections array.</p>
+            <p>You can reorder the way the sections appear in the app by reordering the corresponding JSON objects in the sections array. I aim to make this a more approachable feature soon.</p>
             <hr />
             <h4 id="privacy-policy">Privacy Policy</h4>
-            <p>This website does not and will never (1) collect any information about its users, (2) sell any information about its users, (3) track its users, or (4) attempt to invade the their privacy in any way; there are no logs, and no tracking software such as Google Analytics is contacted.</p>
-            <p>The <a href="index.html">app</a> requires JavaScript to function, including <a href="app.js" rel="nofollow">app.js</a> file and inline scripts in the <a href="https://github.com/ethanuppal/transcribe/blob/main/index.html" rel="nofollow">index.html</a> file. All js files can be viewed on the GitHub. This page will also run JavaScript in the form of <a href="https://github.com/ethanuppal/transcribe/blob/main/help.html" rel="nofollow">inline scripts</a>, but it does not need to do so to function.</p>
+            <p>Please see <a href="https://ethanuppal.github.io/privacy.html">ethanuppal.github.io/privacy.html</a>, but the TL;DR is that I collect no information about you.</p>
+            <p>The <a href="index.html">app</a> requires JavaScript, including <a href="app.js" rel="nofollow">app.js</a> file and inline scripts in the <a href="https://github.com/ethanuppal/transcribe/blob/main/index.html" rel="nofollow">index.html</a> file, to function. All JavaScript files can be viewed on the GitHub. This page will also run JavaScript in the form of <a href="https://github.com/ethanuppal/transcribe/blob/main/help.html" rel="nofollow">inline scripts</a>, but it does not need to do so to function.</p>
             <h4 id='other-notes'>Other Notes</h4>
             <ul>
                 <li>I host this website through <a href="https://pages.github.com" rel="nofollow">GitHub pages</a>.</li>
