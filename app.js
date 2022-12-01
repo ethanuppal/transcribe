@@ -72,17 +72,6 @@ $(document).ready(function() {
                 internal.saved = true;
         });
     }
-
-    // https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
-    // Cache selectors outside callback for performance.
-    var $window = $(window),
-        $stickyEl = $('#player'),
-        elTop = $stickyEl.offset().top;
-
-    $window.scroll(function() {
-        //console.log($window.scrollTop() > elTop);
-         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
-     });
 });
 
 function setIconBasedOnAudioPause(icon) {
@@ -175,6 +164,20 @@ function loadWorkspaceURL(url, name) {
         $('#upload-div-msg').html('Upload successful! You can upload a new file or view the <a href="library.html">song library</a>.');
         document.title = `${model.filename} | Transcribe Web App`;
     }
+
+    enableStickyPlayer();
+}
+
+function enableStickyPlayer() {
+    // https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
+    // Cache selectors outside callback for performance.
+    var $window = $(window),
+        $stickyEl = $('#player'),
+        elTop = $stickyEl.offset().top;
+
+    $window.scroll(function() {
+         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+     });
 }
 
 function secondsToTimestamp(sec) {
