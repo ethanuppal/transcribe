@@ -51,10 +51,13 @@ body.dark-theme {
 
 /* Main Content */
 #container {
+    /* Position */
     position: absolute;
     max-width: 100%;
     left: 0;
     right: 0;
+    margin-left: 0;
+    margin-right: 0;
 
     /* Border and Padding */
     padding: 15px 20px;
@@ -118,6 +121,9 @@ body.dark-theme {
 .section label {
     font-size: 16px;
 }
+.section span {
+    font-size: 14px;
+}
 
 .section h1 {
     font-size: 20px;
@@ -143,10 +149,28 @@ body.dark-theme {
     color: black;
 }
 
-// https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
+.link-button:hover {
+    filter: brightness(80%);
+}
+
+/* https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it */
 #player.sticky {
     position: fixed;
     top: 0;
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-width: 1px;
+    border-top: 0;
+    width: calc(100% - 42px);
+}
+
+@media only screen and (min-width: 1040px) {
+    #player.sticky {
+        margin: 0 auto;
+        width: 998px;
+        left: inherit;
+        right: inherit;
+    }
 }
 
 .not-link {

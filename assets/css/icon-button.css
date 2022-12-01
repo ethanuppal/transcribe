@@ -10,10 +10,10 @@
     color: black;
 }
 
-/* .icon-button :hover {
-    filter: opacity(90%);
+.icon-button:hover {
+    filter: brightness(90%);
 }
 
-.icon-button :active {
+/* .icon-button :active {
     filter: opacity(80%);
 } */

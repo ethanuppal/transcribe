@@ -75,14 +75,14 @@ $(document).ready(function() {
 
     // https://stackoverflow.com/questions/2907367/have-a-div-cling-to-top-of-screen-if-scrolled-down-past-it
     // Cache selectors outside callback for performance.
-    // var $window = $(window),
-    //     $stickyEl = $('#player'),
-    //     elTop = $stickyEl.offset().top;
-    //
-    // $window.scroll(function() {
-    //     //console.log($window.scrollTop() > elTop);
-    //      $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
-    //  });
+    var $window = $(window),
+        $stickyEl = $('#player'),
+        elTop = $stickyEl.offset().top;
+
+    $window.scroll(function() {
+        //console.log($window.scrollTop() > elTop);
+         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+     });
 });
 
 function setIconBasedOnAudioPause(icon) {
@@ -421,7 +421,7 @@ function createSectionDiv(id) {
     <label for="end-${id}">End (in <em>minute:second</em> format):</label>
     <input type="text" id="end-${id}" name="end-${id}" placeholder="00:00" oninput="saveSectionValues(${id});"><br/>
 
-    <label for="speed-${id}">Speed (normal = 1, 50% = 0.5):</label>
+    <label for="speed-${id}">Speed (1 = normal, 0.5 = 50%):</label>
     <input type="number" id="speed-${id}" name="speed-${id}" placeholder="Enter a playback speed" value="1" min="0.01" step="0.01" onchange="saveSectionValues(${id});"><br/>
 
     <label for="loop-${id}">Loop:</label>
