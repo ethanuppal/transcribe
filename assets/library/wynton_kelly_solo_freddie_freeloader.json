@@ -39,10 +39,10 @@
             "name": "Full Kelly",
             "start": 44,
             "end": 135,
-            "speed": "0.75",
+            "speed": "1",
             "loop": true
         }
     ],
     "lastID": 5,
-    "currentTime": 46.6279455
+    "currentTime": 0
 }
